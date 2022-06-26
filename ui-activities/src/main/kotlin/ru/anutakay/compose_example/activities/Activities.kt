@@ -1,5 +1,6 @@
 package ru.anutakay.compose_example.activities
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -15,5 +16,5 @@ internal fun Activities(
     viewModel: ActivitiesViewModel,
     navController: NavController,
 ) {
-
+    Text(text = "list of activities")
 }
