@@ -9,3 +9,6 @@ dependencyResolutionManagement {
 rootProject.name = "Compose example"
 include ':app'
 include ':ui-activities'
+include ':data'
+include ':domain'
+include ':data-android'
