@@ -1,4 +1,4 @@
-package app.anutakay.compose_example
+package ru.anutakay.compose_example
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

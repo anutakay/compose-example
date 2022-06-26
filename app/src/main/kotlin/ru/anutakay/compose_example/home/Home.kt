@@ -1,4 +1,4 @@
-package app.anutakay.compose_example.home
+package ru.anutakay.compose_example.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import app.anutakay.compose_example.Screen
+import ru.anutakay.compose_example.Screen
 import ru.anutakay.compose_example.activities.Activities
 
 @Composable
