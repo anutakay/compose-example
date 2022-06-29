@@ -77,6 +77,7 @@ dependencies {
 
     implementation project(':data-android')
     implementation project(':ui-activities')
+    implementation project(':ui-add-activity')
 
     testImplementation 'junit:junit:4.13.2'
 

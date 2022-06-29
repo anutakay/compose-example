@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/data-android" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/ui-activities" />
+            <option value="$PROJECT_DIR$/ui-add-activity" />
           </set>
         </option>
       </GradleProjectSettings>
