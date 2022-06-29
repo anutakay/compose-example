@@ -9,6 +9,6 @@ class DebugActivitiesGroupedByDayDataSource @Inject constructor(
 ) : ActivitiesGroupedByDayDataSource {
     override fun getActivitiesGroupedByDay(): List<DayActivities> =
         store.activities
-            .groupBy { it.timestamp }
+            .groupBy { it.dateTime.toLocalDate() }
             .map { DayActivities(it.key, it.value) }
 }

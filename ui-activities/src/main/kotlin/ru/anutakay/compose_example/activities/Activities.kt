@@ -7,8 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import java.time.Instant
-import java.time.ZoneId
 
 @Composable
 fun Activities(navController: NavController) = Activities(
@@ -33,7 +31,7 @@ private fun ActivitiesList(
     LazyColumn {
         viewModel.activities.forEach {
             item {
-                Text(text = "activity: ${it.title}, time: ${it.timestamp}")
+                Text(text = "activity: ${it.title}, time: ${it.dateTime}")
             }
         }
     }
@@ -47,13 +45,12 @@ private fun ActivitiesGroupedByDay(
     LazyColumn {
         viewModel.groupedActivities.forEach {
             stickyHeader {
-                val date =
-                    Instant.ofEpochMilli(it.timestamp).atZone(ZoneId.systemDefault()).toLocalDate()
+                val date = it.date
                 Text(text = "date: ${date.dayOfMonth} ${date.month} ${date.year}")
             }
             it.activities.forEach {
                 item {
-                    Text(text = "activity: ${it.title}, time: ${it.timestamp}")
+                    Text(text = "activity: ${it.title}, time: ${it.dateTime}")
                 }
             }
         }

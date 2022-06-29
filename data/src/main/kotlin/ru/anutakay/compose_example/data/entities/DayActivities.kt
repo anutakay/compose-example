@@ -1,6 +1,8 @@
 package ru.anutakay.compose_example.data.entities
 
+import java.time.LocalDate
+
 data class DayActivities(
-    val timestamp: Long,
+    val date: LocalDate,
     val activities: List<Activity>
 )
