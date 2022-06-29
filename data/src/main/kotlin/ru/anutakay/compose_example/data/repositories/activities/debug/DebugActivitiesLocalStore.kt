@@ -13,9 +13,9 @@ class DebugActivitiesLocalStore @Inject constructor() {
         get() {
             val dateTime: LocalDateTime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40)
             return listOf(
-                Activity("first", dateTime),
-                Activity("second", dateTime.plusDays(2)),
-                Activity("cat", dateTime.plusHours(2))
+                Activity("first action", dateTime),
+                Activity("second action", dateTime.plusDays(2)),
+                Activity("action", dateTime.plusHours(2))
             )
         }
 }
