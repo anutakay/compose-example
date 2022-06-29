@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.anutakay.compose_example.data.entities.Activity
 import ru.anutakay.compose_example.data.entities.DayActivities
+import java.time.LocalDate
 
 @Composable
 fun Activities(navController: NavController) = Activities(
@@ -64,7 +65,7 @@ private fun DayCard(
                 .padding(8.dp)
                 .background(MaterialTheme.colors.surface)
         ) {
-            DateText(it)
+            DateText(it.date)
             Spacer(modifier = Modifier.height(8.dp))
             Divider()
             it.activities.forEach { ActivityRow(it) }
@@ -73,8 +74,8 @@ private fun DayCard(
 }
 
 @Composable
-private fun DateText(it: DayActivities) {
-    Text(text = "${it.date.dayOfMonth} ${it.date.month} ${it.date.year}")
+private fun DateText(date: LocalDate) {
+    Text(text = "${date.dayOfMonth} ${date.month} ${date.year}")
 }
 
 @Composable
