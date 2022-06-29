@@ -8,6 +8,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+}
+
 dependencies {
     implementation 'javax.inject:javax.inject:1'
 }
