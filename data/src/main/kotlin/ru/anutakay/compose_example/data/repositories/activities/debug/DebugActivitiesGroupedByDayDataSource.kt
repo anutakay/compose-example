@@ -1,5 +1,6 @@
 package ru.anutakay.compose_example.data.repositories.activities.debug
 
+import io.reactivex.rxjava3.core.Observable
 import ru.anutakay.compose_example.data.entities.DayActivities
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesGroupedByDayDataSource
 import javax.inject.Inject
@@ -7,8 +8,11 @@ import javax.inject.Inject
 class DebugActivitiesGroupedByDayDataSource @Inject constructor(
     private val store: DebugActivitiesLocalStore
 ) : ActivitiesGroupedByDayDataSource {
-    override fun getActivitiesGroupedByDay(): List<DayActivities> =
+    override fun observeActivitiesGroupedByDay(): Observable<List<DayActivities>> =
         store.activities
-            .groupBy { it.dateTime.toLocalDate() }
-            .map { DayActivities(it.key, it.value) }
+            .map { list ->
+                list.groupBy { it.dateTime.toLocalDate() }
+                    .map { DayActivities(it.key, it.value) }
+            }
+
 }

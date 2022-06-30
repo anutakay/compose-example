@@ -17,6 +17,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -36,25 +38,24 @@ internal fun Activities(
     viewModel: ActivitiesViewModel,
     navController: NavController,
 ) {
+    val state by viewModel.groupedActivities.subscribeAsState(listOf())
     Surface {
-        ActivitiesGroupedByDay(viewModel)
+        ActivitiesGroupedByDay(state)
     }
 }
 
 @Composable
-private fun ActivitiesGroupedByDay(
-    viewModel: ActivitiesViewModel
-) {
+private fun ActivitiesGroupedByDay(state: List<DayActivities>) {
     LazyColumn(
         modifier = Modifier.padding(16.dp)
     ) {
-        viewModel.groupedActivities.forEach { item { DayCard(it) } }
+        state.forEach { item { DayCard(it) } }
     }
 }
 
 @Composable
 private fun DayCard(
-    it: DayActivities
+    dayActivities: DayActivities
 ) {
     Card(
         modifier = Modifier.padding(10.dp),
@@ -65,10 +66,10 @@ private fun DayCard(
                 .padding(8.dp)
                 .background(MaterialTheme.colors.surface)
         ) {
-            DateText(it.date)
+            DateText(dayActivities.date)
             Spacer(modifier = Modifier.height(8.dp))
             Divider()
-            it.activities.forEach { ActivityRow(it) }
+            dayActivities.activities.forEach { ActivityRow(it) }
         }
     }
 }
