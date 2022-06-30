@@ -1,6 +1,5 @@
 package ru.anutakay.compose_example.home
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.FabPosition
@@ -24,11 +23,11 @@ import ru.anutakay.compose_example.add_activity.AddActivity
 
 @Composable
 internal fun Home() {
+    val navController: NavHostController = rememberNavController()
     Scaffold(
-        floatingActionButton = { Fab() },
+        floatingActionButton = { Fab(navController) },
         floatingActionButtonPosition = FabPosition.End
     ) {
-        val navController: NavHostController = rememberNavController()
         Box(
             Modifier
                 .fillMaxWidth()
@@ -49,13 +48,15 @@ internal fun Home() {
 }
 
 @Composable
-internal fun Fab() {
+internal fun Fab(navController: NavHostController) {
+
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     FloatingActionButton(onClick = {
-        coroutineScope.launch {
-            Toast.makeText(context, "aaa", Toast.LENGTH_SHORT).show()
-        }
+        navController.navigate(Screen.AddActivity.route)
+        /*coroutineScope.launch {
+
+        }*/
     }) {
         Icon(
             imageVector = Icons.Filled.Add,

@@ -1,7 +1,7 @@
 package ru.anutakay.compose_example.add_activity
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 
 @Composable
@@ -12,8 +12,8 @@ fun AddActivity(navController: NavController) = AddActivity(
 
 @Composable
 internal fun AddActivity(
-    viewModel: ViewModel,
+    viewModel: AddActivityViewModel,
     navController: NavController,
 ) {
-
+    Text("AAAAAAAA")
 }
