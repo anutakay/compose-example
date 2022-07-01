@@ -13,6 +13,6 @@ class DebugActivitiesGroupedByDayDataSource @Inject constructor(
             .map { list ->
                 list.groupBy { it.dateTime.toLocalDate() }
                     .map { DayActivities(it.key, it.value) }
+                    .sortedByDescending { it.date }
             }
-
 }
