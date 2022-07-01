@@ -1,12 +1,14 @@
 package ru.anutakay.compose_example.data.repositories.activities
 
-import io.reactivex.rxjava3.core.Observable
-import ru.anutakay.compose_example.data.entities.DayActivities
+import ru.anutakay.compose_example.data.entities.Activity
 import javax.inject.Inject
 
 class ActivitiesRepository @Inject constructor(
-    private val activitiesGroupedByDayDataSource: ActivitiesGroupedByDayDataSource
+    private val activitiesGroupedByDay: ActivitiesGroupedByDayDataSource,
+    private val addActivity: AddActivityGateway
 ) {
-    fun observeActivitiesGroupedByDay(): Observable<List<DayActivities>> =
-        activitiesGroupedByDayDataSource.observeActivitiesGroupedByDay()
+    fun observeActivitiesGroupedByDay() =
+        activitiesGroupedByDay.observeActivitiesGroupedByDay()
+
+    fun addActivity(activity: Activity) = addActivity.addActivity(activity)
 }

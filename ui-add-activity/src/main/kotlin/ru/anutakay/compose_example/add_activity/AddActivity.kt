@@ -12,14 +12,14 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ru.anutakay.compose_example.data.entities.Activity
+import java.time.LocalDateTime
 
 @Composable
 fun AddActivity(navController: NavController) = AddActivity(
@@ -39,7 +39,7 @@ internal fun AddActivity(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             ActivityTitleTextField(activityTitleState)
-            SaveActivityButton(activityTitleState, navController)
+            SaveActivityButton(viewModel, activityTitleState, navController)
         }
     }
 }
@@ -56,19 +56,16 @@ private fun ActivityTitleTextField(
 
 @Composable
 private fun SaveActivityButton(
+    viewModel: AddActivityViewModel,
     title: State<String>,
     navController: NavController
 ) {
-    var enabled by rememberSaveable { mutableStateOf(true) }
-
     Button(
         modifier = Modifier
             .fillMaxWidth()
             .height(52.dp),
-        enabled = enabled,
         onClick = {
-            enabled = false
-            println(title.value)
+            viewModel.addActivity(Activity(title.value, LocalDateTime.now()))
             navController.popBackStack()
         }
     ) {
