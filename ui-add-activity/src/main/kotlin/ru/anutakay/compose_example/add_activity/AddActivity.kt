@@ -74,5 +74,4 @@ private fun SaveActivityButton(
     ) {
         Text(text = "SAVE")
     }
-
 }

@@ -8,9 +8,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Compose example"
 include ':app'
+include ':base'
+include ':common-ui'
+include ':data'
+include ':data-android'
+include ':domain'
 include ':ui-activities'
 include ':ui-add-activity'
-include ':data'
-include ':domain'
-include ':data-android'
-include ':common-ui'

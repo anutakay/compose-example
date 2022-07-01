@@ -54,6 +54,7 @@ dependencies {
 
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.runtime:runtime-rxjava3:$compose_version"
+   // testImplementation 'org.junit.jupiter:junit-jupiter'
 
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
