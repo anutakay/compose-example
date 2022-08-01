@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import java.time.LocalDateTime
 
 @Composable

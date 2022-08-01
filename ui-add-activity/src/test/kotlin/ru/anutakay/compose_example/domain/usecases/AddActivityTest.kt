@@ -3,7 +3,7 @@ package ru.anutakay.compose_example.domain.usecases
 import io.reactivex.rxjava3.core.Completable
 import org.junit.Test
 import org.mockito.Mockito
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit

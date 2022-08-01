@@ -1,7 +1,7 @@
 package ru.anutakay.compose_example.data.repositories.activities.debug
 
 import io.reactivex.rxjava3.core.Observable
-import ru.anutakay.compose_example.data.entities.DayActivities
+import ru.anutakay.compose_example.model.entities.DayActivities
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesGroupedByDayDataSource
 import javax.inject.Inject
 

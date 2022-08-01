@@ -1,4 +1,4 @@
-package ru.anutakay.compose_example.data.entities
+package ru.anutakay.compose_example.model.entities
 
 import java.time.LocalDate
 

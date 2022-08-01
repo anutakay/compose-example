@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.launch
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.domain.usecases.AddActivityInteractor
 import javax.inject.Inject
 

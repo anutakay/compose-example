@@ -12,6 +12,10 @@
       <module name="Compose_example.domain" target="1.8" />
       <module name="Compose_example.domain.main" target="1.8" />
       <module name="Compose_example.domain.test" target="1.8" />
+      <module name="Compose_example.model" target="1.8" />
+      <module name="Compose_example.model.androidTest" target="1.8" />
+      <module name="Compose_example.model.main" target="1.8" />
+      <module name="Compose_example.model.test" target="1.8" />
       <module name="Compose_example.mylibrary" target="11" />
       <module name="Compose_example.ui-activities" target="11" />
       <module name="Compose_example.ui-add-activity" target="11" />

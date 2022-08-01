@@ -13,10 +13,3 @@ sourceSets {
     test.java.srcDirs += 'src/test/kotlin'
     androidTest.java.srcDirs += 'src/androidTest/kotlin'
 }
-
-dependencies {
-    implementation 'javax.inject:javax.inject:1'
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
-
-    implementation project(':model')
-}

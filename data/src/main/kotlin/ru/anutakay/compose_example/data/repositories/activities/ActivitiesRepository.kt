@@ -1,6 +1,6 @@
 package ru.anutakay.compose_example.data.repositories.activities
 
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import javax.inject.Inject
 
 class ActivitiesRepository @Inject constructor(

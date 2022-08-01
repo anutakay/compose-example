@@ -2,7 +2,7 @@ package ru.anutakay.compose_example.domain.usecases
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import ru.anutakay.compose_example.data.entities.DayActivities
+import ru.anutakay.compose_example.model.entities.DayActivities
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository
 import javax.inject.Inject
 

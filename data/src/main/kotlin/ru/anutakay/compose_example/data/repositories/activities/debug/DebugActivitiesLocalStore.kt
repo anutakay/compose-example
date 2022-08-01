@@ -2,7 +2,7 @@ package ru.anutakay.compose_example.data.repositories.activities.debug
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import java.time.LocalDateTime
 import java.time.Month
 import javax.inject.Inject

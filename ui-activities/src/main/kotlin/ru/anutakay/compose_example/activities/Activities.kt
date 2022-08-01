@@ -25,8 +25,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.anutakay.compose_example.common_ui.DateText
 import ru.anutakay.compose_example.common_ui.DateTimeText
-import ru.anutakay.compose_example.data.entities.Activity
-import ru.anutakay.compose_example.data.entities.DayActivities
+import ru.anutakay.compose_example.model.entities.Activity
+import ru.anutakay.compose_example.model.entities.DayActivities
 
 @Composable
 internal fun Activities(navController: NavController) = Activities(

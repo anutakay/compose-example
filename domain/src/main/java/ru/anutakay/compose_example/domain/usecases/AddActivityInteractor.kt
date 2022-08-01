@@ -1,6 +1,6 @@
 package ru.anutakay.compose_example.domain.usecases
 
-import ru.anutakay.compose_example.data.entities.Activity
+import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository
 import ru.anutakay.compose_example.domain.Interactor
 import javax.inject.Inject
