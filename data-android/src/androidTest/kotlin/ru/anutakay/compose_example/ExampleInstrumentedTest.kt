@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ru.anutakay.compose_example.test", appContext.packageName)
+        assertEquals("ru.anutakay.compose_example.data.test", appContext.packageName)
     }
 }
