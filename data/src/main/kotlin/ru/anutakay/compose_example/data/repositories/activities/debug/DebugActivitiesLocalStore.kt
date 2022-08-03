@@ -17,11 +17,11 @@ class DebugActivitiesLocalStore @Inject constructor() {
         Activity("second action", dateTime.plusDays(2)),
         Activity("action", dateTime.plusHours(2))
     )
+
     private val activitiesProcessor: BehaviorProcessor<List<Activity>> =
         BehaviorProcessor.createDefault(list)
 
     val activities: Observable<List<Activity>> = activitiesProcessor.toObservable()
-
 
     fun addActivity(activity: Activity) {
         activitiesProcessor.onNext(list.apply { add(activity) })

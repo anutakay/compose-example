@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
+    id 'kotlin-kapt'
 }
 
 java {
@@ -15,6 +16,9 @@ sourceSets {
 }
 
 dependencies {
+    api 'android.arch.persistence.room:runtime:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
     implementation 'javax.inject:javax.inject:1'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
 
