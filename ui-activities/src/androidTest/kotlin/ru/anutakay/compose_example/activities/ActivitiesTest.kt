@@ -1,9 +1,14 @@
 package ru.anutakay.compose_example.activities
 
 import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.test.assertAll
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasAnyChild
+import androidx.compose.ui.test.hasParent
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onRoot
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -43,8 +48,23 @@ class ActivitiesTest {
     @Test
     fun myTest() {
         composeTestRule.onRoot().assertIsDisplayed()
-        composeTestRule.onNodeWithText("first action").assertExists()
-        composeTestRule.onNodeWithText("second action").assertExists()
-        composeTestRule.onNodeWithText("action").assertExists()
+        composeTestRule.onAllNodesWithTag(ActivitiesTags.LIST)
+            .assertCountEquals(1)
+
+        composeTestRule.onAllNodesWithTag(ActivitiesTags.DAY_CARD)
+            .assertCountEquals(2)
+            .assertAll(
+                hasParent(hasTestTag(ActivitiesTags.LIST))
+                        and hasAnyChild(hasTestTag(ActivitiesTags.DATE))
+                        and hasAnyChild(hasTestTag(ActivitiesTags.ACTIVITY_ITEM))
+            )
+
+        composeTestRule.onAllNodesWithTag(ActivitiesTags.ACTIVITY_ITEM)
+            .assertCountEquals(3)
+            .assertAll(
+                hasParent(hasTestTag(ActivitiesTags.DAY_CARD))
+                        and hasAnyChild(hasTestTag(ActivitiesTags.TITLE))
+                        and hasAnyChild(hasTestTag(ActivitiesTags.TIME))
+            )
     }
 }
