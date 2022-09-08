@@ -1,12 +1,13 @@
 package ru.anutakay.compose_example.data.entities
 
+import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "activities")
 class DbActivity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
     var id: Long = 0
-    var title: String? = null
-    var timestamp = 0L
+    @ColumnInfo(name = "title") var title: String? = null
+    @ColumnInfo(name = "timestamp") var timestamp = 0L
 }

@@ -1,4 +1,4 @@
-package ru.anutakay.compose_example.domain.usecases
+package ru.anutakay.compose_example.domain.interactors
 
 import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository

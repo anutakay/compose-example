@@ -1,4 +1,4 @@
-package ru.anutakay.compose_example.domain.usecases
+package ru.anutakay.compose_example.domain.observers
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject

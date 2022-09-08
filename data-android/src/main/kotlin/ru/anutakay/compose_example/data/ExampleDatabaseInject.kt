@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import ru.anutakay.compose_example.data.entities.DbActivity
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -20,7 +21,7 @@ object RoomDatabaseModule {
         @ApplicationContext
         context: Context
     ): ExampleRoomDatabase =
-        Room.databaseBuilder(context, ExampleRoomDatabase::class.java, "activities.db")
+        Room.inMemoryDatabaseBuilder(context, ExampleRoomDatabase::class.java)
             .fallbackToDestructiveMigration()
             .apply {
              //   if (Debug.isDebuggerConnected()) {

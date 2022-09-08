@@ -2,7 +2,7 @@ package ru.anutakay.compose_example.activities
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ru.anutakay.compose_example.domain.usecases.ObserveActivitiesByDate
+import ru.anutakay.compose_example.domain.observers.ObserveActivitiesByDate
 import javax.inject.Inject
 
 @HiltViewModel
