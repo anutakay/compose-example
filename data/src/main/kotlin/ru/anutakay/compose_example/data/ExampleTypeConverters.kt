@@ -9,9 +9,13 @@ import ru.anutakay.compose_example.model.entities.Activity
 
 object ExampleTypeConverters {
 
-   // @TypeConverter
+    // @TypeConverter
     @JvmStatic
     fun toDbEntity(modelEntity: Activity): DbActivity = DbActivity()
+        .apply {
+            title = modelEntity.title
+            timestamp = toTimestamp(modelEntity.dateTime)
+        }
 
     //@TypeConverter
     @JvmStatic
@@ -25,4 +29,9 @@ object ExampleTypeConverters {
         Instant.ofEpochMilli(it),
         TimeZone.getDefault().toZoneId()
     )
+
+    @JvmStatic
+    private fun toTimestamp(dateTime: LocalDateTime) = dateTime
+        .atZone(TimeZone.getDefault().toZoneId())
+        .toInstant().toEpochMilli()
 }
