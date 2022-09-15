@@ -12,7 +12,7 @@ class DbActivitiesGroupedByDayDataSource @Inject constructor(
 ) : ActivitiesGroupedByDayDataSource {
 
     override fun observeActivitiesGroupedByDay(): Observable<List<DayActivities>> =
-        Observable.just(database.activitiesDao().getActivities())
+        database.activitiesDao().getActivities()
             .map { it.map(::toModelEntity) }
             .map { list ->
                 list.groupBy { it.dateTime.toLocalDate() }

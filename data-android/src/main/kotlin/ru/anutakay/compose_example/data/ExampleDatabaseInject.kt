@@ -23,11 +23,6 @@ object RoomDatabaseModule {
     ): ExampleRoomDatabase =
         Room.inMemoryDatabaseBuilder(context, ExampleRoomDatabase::class.java)
             .fallbackToDestructiveMigration()
-            .apply {
-             //   if (Debug.isDebuggerConnected()) {
-                    allowMainThreadQueries()
-             //   }
-            }
             .build()
 }
 

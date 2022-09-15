@@ -13,5 +13,5 @@ abstract class ActivitiesDao {
     abstract fun addActivity(activity: DbActivity)
 
     @Query("SELECT * FROM activities")
-    abstract fun getActivities(): List<DbActivity>
+    abstract fun getActivities(): Observable<List<DbActivity>>
 }

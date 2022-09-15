@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.launch
 import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.domain.interactors.AddActivityInteractor
@@ -18,11 +19,10 @@ class AddActivityViewModel @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
 
     fun addActivity(activity: Activity) {
-        viewModelScope.launch {
-            addActivity(AddActivityInteractor.Params(activity))
-                .subscribe()
-                .track()
-        }
+        addActivity(AddActivityInteractor.Params(activity))
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+            .track()
     }
 
     private fun Disposable.track() {

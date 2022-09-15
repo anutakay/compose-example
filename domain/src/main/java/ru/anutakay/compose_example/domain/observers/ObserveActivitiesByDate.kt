@@ -1,22 +1,12 @@
 package ru.anutakay.compose_example.domain.observers
 
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
 import ru.anutakay.compose_example.model.entities.DayActivities
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository
 import javax.inject.Inject
+import ru.anutakay.compose_example.base.usecases.SimpleObserver
 
 class ObserveActivitiesByDate @Inject constructor(
     private val repository: ActivitiesRepository
-) {
-    private val params = BehaviorSubject.create<Unit>()
-
-    val observable: Observable<List<DayActivities>> =
-        params
-            .flatMap { createObservable() }
-            .distinctUntilChanged()
-
-    operator fun invoke() = params.onNext(Unit)
-
-    private fun createObservable() = repository.observeActivitiesGroupedByDay()
+): SimpleObserver<List<DayActivities>>() {
+    override fun createObservable() = repository.observeActivitiesGroupedByDay()
 }

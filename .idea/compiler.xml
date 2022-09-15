@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
+    <bytecodeTargetLevel target="1.8">
       <module name="Compose_example.app" target="11" />
       <module name="Compose_example.common-ui" target="11" />
-      <module name="Compose_example.data" target="1.8" />
       <module name="Compose_example.data-android" target="11" />
-      <module name="Compose_example.data.androidTest" target="1.8" />
-      <module name="Compose_example.data.main" target="1.8" />
-      <module name="Compose_example.data.test" target="1.8" />
-      <module name="Compose_example.domain" target="1.8" />
-      <module name="Compose_example.domain.main" target="1.8" />
-      <module name="Compose_example.domain.test" target="1.8" />
-      <module name="Compose_example.model" target="1.8" />
-      <module name="Compose_example.model.androidTest" target="1.8" />
-      <module name="Compose_example.model.main" target="1.8" />
-      <module name="Compose_example.model.test" target="1.8" />
       <module name="Compose_example.mylibrary" target="11" />
       <module name="Compose_example.ui-activities" target="11" />
       <module name="Compose_example.ui-add-activity" target="11" />

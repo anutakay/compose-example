@@ -2,7 +2,7 @@ package ru.anutakay.compose_example.domain.interactors
 
 import ru.anutakay.compose_example.model.entities.Activity
 import ru.anutakay.compose_example.data.repositories.activities.ActivitiesRepository
-import ru.anutakay.compose_example.domain.Interactor
+import ru.anutakay.compose_example.base.usecases.Interactor
 import javax.inject.Inject
 
 class AddActivityInteractor @Inject constructor(
