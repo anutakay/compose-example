@@ -1,5 +1,6 @@
 package ru.anutakay.compose_example.activitiesScaffold
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
@@ -30,6 +31,6 @@ fun ActivitiesScaffold(
             }
         }
     ) {
-        Activities(navController)
+        Column(modifier = Modifier.padding(it)) { Activities(navController) }
     }
 }
