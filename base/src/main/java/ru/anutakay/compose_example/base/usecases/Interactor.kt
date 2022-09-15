@@ -1,4 +1,4 @@
-package ru.anutakay.compose_example.domain
+package ru.anutakay.compose_example.base.usecases
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable

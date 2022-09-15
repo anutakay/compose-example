@@ -1,3 +1,9 @@
+pluginManagement {
+    plugins {
+        id 'org.jetbrains.kotlin.android' version '1.7.0'
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -6,6 +12,7 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
+
 rootProject.name = "Compose example"
 include ':app'
 include ':base'

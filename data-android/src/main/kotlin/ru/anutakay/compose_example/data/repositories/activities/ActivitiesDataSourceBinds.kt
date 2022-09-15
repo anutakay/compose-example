@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.anutakay.compose_example.data.repositories.activities.debug.DebugActivitiesGroupedByDayDataSource
-import ru.anutakay.compose_example.data.repositories.activities.debug.DebugAddActivityGateway
+import ru.anutakay.compose_example.data.repositories.activities.db.DbActivitiesGroupedByDayDataSource
+import ru.anutakay.compose_example.data.repositories.activities.db.DbAddActivityGateway
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -13,11 +13,11 @@ abstract class ActivitiesDataSourceBinds {
 
     @Binds
     abstract fun bindActivitiesGroupedByDayDataSource(
-        source: DebugActivitiesGroupedByDayDataSource
+        source: DbActivitiesGroupedByDayDataSource
     ): ActivitiesGroupedByDayDataSource
 
     @Binds
     abstract fun bindAddActivityGateway(
-        source: DebugAddActivityGateway
+        source: DbAddActivityGateway
     ): AddActivityGateway
 }
