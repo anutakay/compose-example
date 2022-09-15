@@ -1,25 +1,22 @@
 package ru.anutakay.compose_example.activities
 
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.assertAll
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasAnyChild
 import androidx.compose.ui.test.hasParent
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onRoot
-import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import ru.anutakay.compose_example.domain.observers.ObserveActivitiesByDate
 import javax.inject.Inject
+import ru.anutakay.compose_example.TestActivity
 import ru.anutakay.compose_example.data.ExampleDatabase
-import ru.anutakay.compose_example.data.ExampleRoomDatabase
 import ru.anutakay.compose_example.data.entities.DbActivity
 
 @HiltAndroidTest
@@ -29,15 +26,10 @@ class ActivitiesTest {
     var hiltTestRule = HiltAndroidRule(this)
 
     @get:Rule(order = 2)
-    val composeTestRule = createComposeRule()
+    val composeTestRule = createAndroidComposeRule<TestActivity>()
 
     @Inject
     lateinit var exampleDatabase: ExampleDatabase
-
-    @Inject
-    lateinit var getActivitiesGroupedByDay: ObserveActivitiesByDate
-
-    private lateinit var viewModel: ActivitiesViewModel
 
     @Before
     fun setup() {
@@ -60,14 +52,6 @@ class ActivitiesTest {
             addActivity(testActivity)
             addActivity(testActivity2)
             addActivity(testActivity3)
-        }
-
-        viewModel = ActivitiesViewModel(getActivitiesGroupedByDay)
-
-        composeTestRule.setContent {
-            MaterialTheme {
-                Activities(viewModel, rememberNavController())
-            }
         }
     }
 

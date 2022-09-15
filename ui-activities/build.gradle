@@ -77,3 +77,7 @@ dependencies {
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.43.1'
     kaptAndroidTest 'com.google.dagger:hilt-compiler:2.43.2'
 }
+
+hilt {
+    enableTransformForLocalTests = true
+}
