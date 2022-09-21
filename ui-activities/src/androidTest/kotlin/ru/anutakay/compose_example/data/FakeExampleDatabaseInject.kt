@@ -1,7 +1,6 @@
 package ru.anutakay.compose_example.data
 
 import android.content.Context
-import android.os.Debug
 import androidx.room.Room
 import dagger.Binds
 import dagger.Module
@@ -9,26 +8,22 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
-import ru.anutakay.compose_example.data.entities.DbActivity
 
 @Module
-@InstallIn(SingletonComponent::class)
-object RoomDatabaseModule {
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [RoomDatabaseModule::class]
+)
+object FakeRoomDatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(
         @ApplicationContext
         context: Context
     ): ExampleRoomDatabase =
-        Room.databaseBuilder(context, ExampleRoomDatabase::class.java, "example_database")
+        Room.inMemoryDatabaseBuilder(context, ExampleRoomDatabase::class.java)
             .fallbackToDestructiveMigration()
             .build()
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class DatabaseModuleBinds {
-    @Binds
-    abstract fun bindExampleDatabase(database: ExampleRoomDatabase): ExampleDatabase
 }
