@@ -1,5 +1,6 @@
 package ru.anutakay.compose_example.home
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -9,6 +10,7 @@ import ru.anutakay.compose_example.Screen
 import ru.anutakay.compose_example.activitiesScaffold.ActivitiesScaffold
 import ru.anutakay.compose_example.add_activity.AddActivity
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun Home() {
     val navController: NavHostController = rememberNavController()

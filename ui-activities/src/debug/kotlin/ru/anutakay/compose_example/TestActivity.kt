@@ -1,16 +1,18 @@
-package ru.anutakay.compose_example.home
+package ru.anutakay.compose_example
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.anutakay.compose_example.activities.Activities
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class TestActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Home()
+            Activities(rememberNavController())
         }
     }
 }
