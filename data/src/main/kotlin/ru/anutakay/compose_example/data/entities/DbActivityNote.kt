@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "activities")
-class DbActivity {
+class DbActivityNote {
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
     var id: Long = 0
     @ColumnInfo(name = "title") var title: String? = null

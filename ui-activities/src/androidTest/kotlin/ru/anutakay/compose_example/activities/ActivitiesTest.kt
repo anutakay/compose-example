@@ -17,7 +17,7 @@ import org.junit.Test
 import javax.inject.Inject
 import ru.anutakay.compose_example.TestActivity
 import ru.anutakay.compose_example.data.ExampleDatabase
-import ru.anutakay.compose_example.data.entities.DbActivity
+import ru.anutakay.compose_example.data.entities.DbActivityNote
 
 @HiltAndroidTest
 class ActivitiesTest {
@@ -33,15 +33,15 @@ class ActivitiesTest {
 
     @Before
     fun setup() {
-        val testActivity = DbActivity().apply {
+        val testActivity = DbActivityNote().apply {
             title = "first"
             timestamp = 1662606234000
         }
-        val testActivity2 = DbActivity().apply {
+        val testActivity2 = DbActivityNote().apply {
             title = "second"
             timestamp = 1662609834000
         }
-        val testActivity3 = DbActivity().apply {
+        val testActivity3 = DbActivityNote().apply {
             title = "another day"
             timestamp = 1663473834000
         }
@@ -49,9 +49,9 @@ class ActivitiesTest {
         hiltTestRule.inject()
 
         with(exampleDatabase.activitiesDao()) {
-            addActivity(testActivity)
-            addActivity(testActivity2)
-            addActivity(testActivity3)
+            addActivityNote(testActivity)
+            addActivityNote(testActivity2)
+            addActivityNote(testActivity3)
         }
     }
 

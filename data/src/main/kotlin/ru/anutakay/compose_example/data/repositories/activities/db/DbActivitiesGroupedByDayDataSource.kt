@@ -2,7 +2,7 @@ package ru.anutakay.compose_example.data.repositories.activities.db
 
 import io.reactivex.rxjava3.core.Observable
 import ru.anutakay.compose_example.data.ExampleDatabase
-import ru.anutakay.compose_example.data.repositories.activities.ActivitiesGroupedByDayDataSource
+import ru.anutakay.compose_example.data.repositories.activities.interfaces.ActivitiesGroupedByDayDataSource
 import ru.anutakay.compose_example.model.entities.DayActivities
 import javax.inject.Inject
 import ru.anutakay.compose_example.data.ExampleTypeConverters.toModelEntity

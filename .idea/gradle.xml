@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/model" />
             <option value="$PROJECT_DIR$/ui-activities" />
             <option value="$PROJECT_DIR$/ui-add-activity" />
+            <option value="$PROJECT_DIR$/ui-add-emotion-note" />
           </set>
         </option>
       </GradleProjectSettings>
