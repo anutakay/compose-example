@@ -22,11 +22,11 @@ internal fun Home() {
         composable(Screen.Activities.route) {
             ActivitiesScaffold(
                 navController,
-                onFabClick = { navController.navigate(Screen.AddEmotionNote.route) }
+                onFabClick = { navController.navigate(Screen.AddActivity.route) }
             )
         }
         composable(Screen.AddActivity.route) {
-            AddActivity(navController)
+            AddActivity(navController = navController)
         }
         composable(Screen.AddEmotionNote.route) {
             AddEmotionNote(navController = navController)

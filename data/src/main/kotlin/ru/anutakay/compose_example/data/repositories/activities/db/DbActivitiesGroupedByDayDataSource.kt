@@ -6,6 +6,7 @@ import ru.anutakay.compose_example.data.repositories.activities.interfaces.Activ
 import ru.anutakay.compose_example.model.entities.DayActivities
 import javax.inject.Inject
 import ru.anutakay.compose_example.data.ExampleTypeConverters.toModelEntity
+import ru.anutakay.compose_example.data.entities.DbActivityNote
 import ru.anutakay.compose_example.model.entities.Activity
 
 class DbActivitiesGroupedByDayDataSource @Inject constructor(
@@ -13,7 +14,7 @@ class DbActivitiesGroupedByDayDataSource @Inject constructor(
 ) : ActivitiesGroupedByDayDataSource {
 
     override fun observeActivitiesGroupedByDay(): Observable<List<DayActivities>> =
-        Observable.merge(
+        Observable.combineLatest(
             database.activitiesDao().getActivities()
                 .map { it.map(::toModelEntity) },
             database.emotionsDao().getEmotionNotes()
@@ -24,8 +25,7 @@ class DbActivitiesGroupedByDayDataSource @Inject constructor(
                             dateTime = item.dateTime
                         ) }
                 }
-        )
-
+        ) { a, b -> a + b }
             .map { list ->
                 list.groupBy { it.dateTime.toLocalDate() }
                     .map { DayActivities(it.key, it.value) }
