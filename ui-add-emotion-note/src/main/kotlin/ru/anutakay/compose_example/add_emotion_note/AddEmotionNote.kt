@@ -22,8 +22,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -32,6 +34,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
+import java.time.LocalDateTime
+import ru.anutakay.compose_example.model.entities.Emotion
+import ru.anutakay.compose_example.model.entities.EmotionNote
 
 @ExperimentalMaterial3Api
 @Composable
@@ -46,41 +51,48 @@ internal fun AddEmotionNote(
     viewModel: AddEmotionNoteViewModel,
     navController: NavController,
 ) {
+    val mSelected = remember { mutableStateOf(Pair("", Emotion.UNKNOWN)) }
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-
-        Column(modifier = Modifier.padding(16.dp)) {
-            val mCities =
-                listOf("Delhi", "Mumbai", "Chennai", "Kolkata", "Hyderabad", "Bengaluru", "Pune")
-            val mSelected = remember {
-                mutableStateOf(mCities.firstOrNull() ?: "")
-            }
-            CitiesDropdown(mSelected, mCities)
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            CitiesDropdown(mSelected, viewModel)
         }
     }
 
     Box(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         contentAlignment = Alignment.BottomCenter,
     ) {
-        SaveButton(navController)
+        SaveButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(52.dp),
+            mSelected = mSelected,
+            viewModel = viewModel,
+            navController = navController
+        )
     }
 }
 
 @ExperimentalMaterial3Api
 @Composable
 private fun CitiesDropdown(
-    mSelected: MutableState<String>,
-    mCities: List<String>
+    mSelected: MutableState<Pair<String, Emotion>>,
+    viewModel: AddEmotionNoteViewModel
 ) {
     val isExpanded = remember { mutableStateOf(false) }
-
     val mTextFieldSize = remember { mutableStateOf(Size.Zero) }
+    val emotionOptions by viewModel.emotionOptions.subscribeAsState(listOf())
 
     OutlinedTextField(
-        value = mSelected.value,
+        value = mSelected.value.first,
         onValueChange = {},
         trailingIcon = {
             Icon(icon(isExpanded), "contentDescription",
@@ -99,13 +111,13 @@ private fun CitiesDropdown(
             .width(with(LocalDensity.current) { mTextFieldSize.value.width.toDp() })
             .wrapContentHeight()
     ) {
-        mCities.forEach { label ->
+        emotionOptions.forEach { label ->
             DropdownMenuItem(
                 onClick = {
                     mSelected.value = label
                     isExpanded.value = false
                 },
-                text = { Text(text = label) }
+                text = { Text(text = label.first) }
             )
         }
     }
@@ -119,13 +131,17 @@ private fun icon(isExpanded: State<Boolean>) =
         Icons.Filled.KeyboardArrowDown
 
 @Composable
-private fun SaveButton(navController: NavController) {
-    Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
-        onClick = { navController.popBackStack() }
+private fun SaveButton(
+    modifier: Modifier,
+    mSelected: MutableState<Pair<String, Emotion>>,
+    viewModel: AddEmotionNoteViewModel,
+    navController: NavController
+) = Button(
+        modifier = modifier,
+        onClick = {
+            viewModel.addEmotionsNote(EmotionNote(mSelected.value.second, LocalDateTime.now()))
+            navController.popBackStack()
+        }
     ) {
         Text(text = "SAVE")
     }
-}

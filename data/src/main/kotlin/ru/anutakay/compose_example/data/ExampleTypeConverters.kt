@@ -33,7 +33,11 @@ object ExampleTypeConverters {
 
     @JvmStatic
     fun toModelEntity(dbEntity: DbEmotionNote): EmotionNote = EmotionNote(
-        emotion = dbEntity.title?.let {  Emotion.valueOf(it) } ?: Emotion.UNKNOWN,
+        emotion = try {
+            dbEntity.title
+                ?.let {  Emotion.valueOf(it.uppercase()) }
+                ?: Emotion.UNKNOWN
+        } catch (e: IllegalArgumentException) { Emotion.UNKNOWN },
         dateTime = toLocalDateTime(dbEntity.timestamp)
     )
 

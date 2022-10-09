@@ -13,5 +13,5 @@ abstract class EmotionsDao {
     abstract fun addEmotionsNote(note: DbEmotionNote)
 
     @Query("SELECT * FROM emotion_notes")
-    abstract fun getActivities(): Observable<List<DbEmotionNote>>
+    abstract fun getEmotionNotes(): Observable<List<DbEmotionNote>>
 }
