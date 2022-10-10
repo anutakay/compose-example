@@ -4,17 +4,21 @@ import androidx.compose.ui.test.assertAll
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasAnyChild
+import androidx.compose.ui.test.hasAnyDescendant
 import androidx.compose.ui.test.hasParent
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.isEnabled
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToLog
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
+import kotlinx.coroutines.awaitCancellation
 import ru.anutakay.compose_example.TestActivity
 import ru.anutakay.compose_example.data.ExampleDatabase
 import ru.anutakay.compose_example.data.entities.DbActivityNote
@@ -61,7 +65,7 @@ class ActivitiesTest {
         composeTestRule.onAllNodesWithTag(ActivitiesTags.LIST)
             .assertCountEquals(1)
 
-        composeTestRule.onAllNodesWithTag(ActivitiesTags.DAY_CARD)
+       composeTestRule.onAllNodesWithTag(ActivitiesTags.DAY_CARD, useUnmergedTree = true)
             .assertCountEquals(2)
             .assertAll(
                 hasParent(hasTestTag(ActivitiesTags.LIST))
@@ -69,7 +73,8 @@ class ActivitiesTest {
                         and hasAnyChild(hasTestTag(ActivitiesTags.ACTIVITY_ITEM))
             )
 
-        composeTestRule.onAllNodesWithTag(ActivitiesTags.ACTIVITY_ITEM)
+
+       composeTestRule.onAllNodesWithTag(ActivitiesTags.ACTIVITY_ITEM, useUnmergedTree = true)
             .assertCountEquals(3)
             .assertAll(
                 hasParent(hasTestTag(ActivitiesTags.DAY_CARD))
