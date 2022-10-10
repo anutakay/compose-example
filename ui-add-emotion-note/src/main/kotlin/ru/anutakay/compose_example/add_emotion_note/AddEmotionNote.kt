@@ -5,14 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,7 +16,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
 import java.time.LocalDateTime
+import ru.anutakay.compose_example.common_ui.SaveButtonBox
 import ru.anutakay.compose_example.model.entities.Emotion
 import ru.anutakay.compose_example.model.entities.EmotionNote
 
@@ -51,97 +46,65 @@ internal fun AddEmotionNote(
     viewModel: AddEmotionNoteViewModel,
     navController: NavController,
 ) {
-    val mSelected = remember { mutableStateOf(Pair("", Emotion.UNKNOWN)) }
+    val selectedState = remember { mutableStateOf(Pair("", Emotion.UNKNOWN)) }
+    val emotionOptions by viewModel.emotionOptions.subscribeAsState(listOf())
 
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.TopCenter
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            CitiesDropdown(mSelected, viewModel)
+            EmotionOptionsDropdown(selectedState, emotionOptions)
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.BottomCenter,
-    ) {
-        SaveButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            mSelected = mSelected,
-            viewModel = viewModel,
-            navController = navController
-        )
-    }
+    SaveButtonBox(
+        onButtonClick = {
+            viewModel.addEmotionsNote(EmotionNote(selectedState.value.second, LocalDateTime.now()))
+            navController.popBackStack()
+        }
+    )
 }
 
 @ExperimentalMaterial3Api
 @Composable
-private fun CitiesDropdown(
-    mSelected: MutableState<Pair<String, Emotion>>,
-    viewModel: AddEmotionNoteViewModel
+private fun EmotionOptionsDropdown(
+    selectedState: MutableState<Pair<String, Emotion>>,
+    emotionOptions: List<Pair<String, Emotion>>
 ) {
-    val isExpanded = remember { mutableStateOf(false) }
-    val mTextFieldSize = remember { mutableStateOf(Size.Zero) }
-    val emotionOptions by viewModel.emotionOptions.subscribeAsState(listOf())
+    val expandedState = remember { mutableStateOf(false) }
+    val textFieldSizeState = remember { mutableStateOf(Size.Zero) }
 
     OutlinedTextField(
-        value = mSelected.value.first,
+        value = selectedState.value.first,
         onValueChange = {},
         trailingIcon = {
-            Icon(icon(isExpanded), "contentDescription",
-                Modifier.clickable { isExpanded.value = !isExpanded.value })
+            Icon(dropdownMenuIcon(expandedState), "contentDescription",
+                Modifier.clickable { expandedState.value = !expandedState.value })
         },
         modifier = Modifier
             .fillMaxWidth()
             .onGloballyPositioned {
-                mTextFieldSize.value = it.size.toSize()
+                textFieldSizeState.value = it.size.toSize()
             }
     )
     DropdownMenu(
-        expanded = isExpanded.value,
+        expanded = expandedState.value,
         onDismissRequest = {},
         modifier = Modifier
-            .width(with(LocalDensity.current) { mTextFieldSize.value.width.toDp() })
+            .width(with(LocalDensity.current) { textFieldSizeState.value.width.toDp() })
             .wrapContentHeight()
     ) {
         emotionOptions.forEach { label ->
             DropdownMenuItem(
                 onClick = {
-                    mSelected.value = label
-                    isExpanded.value = false
+                    selectedState.value = label
+                    expandedState.value = false
                 },
                 text = { Text(text = label.first) }
             )
         }
     }
 }
-
-@Composable
-private fun icon(isExpanded: State<Boolean>) =
-    if (isExpanded.value)
-        Icons.Filled.KeyboardArrowUp
-    else
-        Icons.Filled.KeyboardArrowDown
-
-@Composable
-private fun SaveButton(
-    modifier: Modifier,
-    mSelected: MutableState<Pair<String, Emotion>>,
-    viewModel: AddEmotionNoteViewModel,
-    navController: NavController
-) = Button(
-        modifier = modifier,
-        onClick = {
-            viewModel.addEmotionsNote(EmotionNote(mSelected.value.second, LocalDateTime.now()))
-            navController.popBackStack()
-        }
-    ) {
-        Text(text = "SAVE")
-    }

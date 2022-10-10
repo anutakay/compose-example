@@ -59,6 +59,7 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
 
     implementation project(':domain')
+    implementation project(':common-ui')
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-inline:4.6.1'
