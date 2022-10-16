@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.github.triplet.play'
 }
 
 android {
@@ -53,6 +54,10 @@ android {
         }
     }
     namespace 'ru.anutakay.compose_example'
+}
+
+play {
+    serviceAccountCredentials.set(file("my-day-project-key.json"))
 }
 
 dependencies {
