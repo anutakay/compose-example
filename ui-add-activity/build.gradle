@@ -43,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.compose.material3:material3:1.0.0-beta03"
-    implementation "androidx.compose.material3:material3-window-size-class:1.0.0-beta03"
+    implementation "androidx.compose.material3:material3:1.0.0-rc01"
+    implementation "androidx.compose.material3:material3-window-size-class:1.0.0-rc01"
 
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.runtime:runtime-rxjava3:$compose_version"
@@ -64,6 +64,6 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:4.6.1'
 
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    androidTestImplementation "androidx.test:runner:1.5.0-alpha04"
-    androidTestImplementation "androidx.test:rules:1.4.1-alpha07"
+    androidTestImplementation "androidx.test:runner:1.5.0-beta01"
+    androidTestImplementation "androidx.test:rules:1.4.1-beta01"
 }
