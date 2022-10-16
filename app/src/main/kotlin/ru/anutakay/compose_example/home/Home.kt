@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import ru.anutakay.compose_example.Screen
 import ru.anutakay.compose_example.activitiesScaffold.ActivitiesScaffold
 import ru.anutakay.compose_example.add_activity.AddActivity
+import ru.anutakay.compose_example.add_emotion_note.AddEmotionNote
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +26,10 @@ internal fun Home() {
             )
         }
         composable(Screen.AddActivity.route) {
-            AddActivity(navController)
+            AddActivity(navController = navController)
+        }
+        composable(Screen.AddEmotionNote.route) {
+            AddEmotionNote(navController = navController)
         }
     }
 }

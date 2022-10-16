@@ -13,17 +13,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddActivityViewModel @Inject constructor(
-    val addActivity: AddActivityInteractor
+    private val addActivity: AddActivityInteractor
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    fun addActivity(activity: Activity) {
+    fun addActivity(activity: Activity) =
         addActivity(AddActivityInteractor.Params(activity))
             .subscribeOn(Schedulers.io())
             .subscribe()
             .track()
-    }
 
     private fun Disposable.track() {
         compositeDisposable.add(this)

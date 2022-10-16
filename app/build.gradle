@@ -78,6 +78,7 @@ dependencies {
     implementation project(':data-android')
     implementation project(':ui-activities')
     implementation project(':ui-add-activity')
+    implementation project(':ui-add-emotion-note')
 
     testImplementation 'junit:junit:4.13.2'
 
