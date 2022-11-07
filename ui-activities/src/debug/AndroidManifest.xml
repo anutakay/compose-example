@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest package="ru.anutakay.compose_example.activities"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <application>
-        <activity android:name="ru.anutakay.compose_example.TestActivity" />
-    </application>
-</manifest>

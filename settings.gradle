@@ -1,7 +1,7 @@
 pluginManagement {
     plugins {
         id 'org.jetbrains.kotlin.android' version '1.7.10'
-        id 'com.android.library' version '7.2.2'
+        id 'com.android.library' version '7.3.1'
     }
 }
 
@@ -16,12 +16,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose example"
 include ':app'
-include ':base'
-include ':common-ui'
-include ':data'
-include ':data-android'
-include ':domain'
-include ':model'
-include ':ui-activities'
-include ':ui-add-activity'
-include ':ui-add-emotion-note'
+include ':core:base'
+include ':core:common-ui'
+include ':core:data'
+include ':core:data-android'
+include ':core:domain'
+include ':core:model'
+include ':feature:ui-activities'
+include ':feature:ui-add-activity'
+include ':feature:ui-add-emotion-note'
