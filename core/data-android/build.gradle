@@ -34,11 +34,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'ru.anutakay.compose_example.data'
 }
 
 dependencies {
-    implementation 'com.google.dagger:hilt-android:2.43.1'
-    kapt 'com.google.dagger:hilt-compiler:2.43.2'
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
 
     implementation 'androidx.room:room-runtime:2.4.3'
     implementation 'androidx.room:room-ktx:2.4.3'
